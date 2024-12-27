@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Esbuild-React-Extension",
+  "version": "0.1.0",
+  "author": "Dmytro Tkachuk",
+  "description": "An example react-typescript extension with esbuild",
+  "permissions": ["identity", "storage", "activeTab"],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "build/background.js"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_icon": {
+      "192": "icon128.png",
+      "512": "icon128.png"
+    },
+    "default_title": "Popup",
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["build/injected.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["file://*/*", "http://*/*", "https://*/*"],
+      "js": ["build/content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
