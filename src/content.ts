@@ -7,6 +7,8 @@
  * https://developer.chrome.com/docs/extensions/mv2/content_scripts/
  */
 
+declare const chrome: any;
+
 function addScriptToWindow(scriptLocation: string) {
   try {
     const container = document.head || document.documentElement,
